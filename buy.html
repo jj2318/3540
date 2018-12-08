@@ -1,0 +1,94 @@
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!---Font Awesome--Icon CSS library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='table.css') }}"/>
+    <title>Cryptocurrency Trading Platform</title>
+  </head>
+
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+        
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+          <a class="nav-link" href="/">Home</a>
+      </li>
+      
+      <li class="nav-item active">
+          <a class="nav-link" href="/buy">Trade  <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+              <a class="nav-link" href="#">P&L</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-link" href="table.html">History</a>
+    </li>   
+    
+              
+      </ul>
+    </div>
+</nav>
+
+<div class="container">
+<p>Your Current Balance is : ${{ current_cash }}</p>
+
+
+{% block content %}
+  <form method="post">
+
+    <label for="currency_select">Currency</label>
+    <select title="currency_select" class="form-control" id="currency_select" name="currency_select" required>
+            <option value="BTC" name="BTC" id="BTC" {% if currency_select =="BTC" %} selected {% endif %} >BTC</option>
+            <option value="ETH" name="ETH" id="ETH" {% if currency_select =='ETH' %} selected {% endif %}>ETH</option>
+            <option value="LTC" name="LTC" id="LTC" {% if currency_select =='LTC' %} selected {% endif %}>LTC</option>
+    </select><br>
+
+    <label for="qty">Quantity</label><br>
+    <input name="Quantity" id="qty" required><br>
+
+  <label for="direction_select">Action</label>
+    <select title="direction_select" class="form-control" id="direction_select" name="direction_select" required>
+            <option value="BUY" name="BUY" id="BUY" {% if direction_select =="BUY" %} selected {% endif %} >BUY</option>
+            <option value="SELL" name="SELL" id="SELL" {% if direction_select =='SELL' %} selected {% endif %}>SELL</option>
+    </select><br>
+
+    <input type="submit" value="submit">
+  </form>
+{% endblock %}
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+
+</div>
+</body>
+</html>
+
