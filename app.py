@@ -1,3 +1,7 @@
+***PNL webpage and transaction webpage link in the navbar is misleading, to avoid creating more bugs we have decided to not change the code therefore the trade history page and profit and loss will have to be inserted manually as follows:
+***http:localhost/5000/pnl
+***http:localhost/5000/transaction
+
 from flask import Flask, url_for
 from flask import request
 from flask import render_template
